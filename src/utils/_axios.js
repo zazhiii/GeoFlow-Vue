@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "../utils/cookie"
 
 const _axios = axios.create({
     baseURL: "http://localhost:8080",
@@ -6,12 +7,25 @@ const _axios = axios.create({
 
 // 比如在这里添加统一的 headers
 _axios.interceptors.request.use(
-    function(config) {
-        
+    function (config) {
         config.headers = {
-            Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ6YXpoaSIsImV4cCI6MTc0NDg5MzY3Mn0.PolzfAZTPwbP_Rh2PBigkV6kDG3_wT_tLxOq4rDD9j8"
+            Authorization: getToken()
         }
         return config;
     });
+
+_axios.interceptors.response.use(
+    function (response) {
+        const { data } = response;
+        if(data.code == 0){
+            this.$message.error(data.message)
+        }
+        return response;
+    },
+    function (error) {
+        // 超出 2xx, 比如 4xx, 5xx 走这里
+        return Promise.reject(error);
+    }
+);
 
 export default _axios

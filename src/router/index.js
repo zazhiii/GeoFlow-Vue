@@ -5,14 +5,27 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/home",
-    name: "home",
-    component: () => import('../views/home/HomeView.vue')
+    path: "/",
+    component: () => import('../views/main/MainView.vue'),
+    redirect: "/home",
+    children: [
+      {
+        path: "/home",
+        component: () => import('../views/home/HomeView.vue')
+      },
+      // {
+      //   path: "/geo-file",
+      //   component: () => import('../views/profile/ProfileView.vue')
+      // },
+      {
+        path: "/upload",
+        component: () => import('../views/upload/UploadView.vue')
+      }
+    ]
   },
   {
-    path: "/upload",
-    name: "upload",
-    component: () => import('../views/upload/UploadView.vue')
+    path: "/login",
+    component: () => import('../views/login/LoginView.vue')
   }
 ]
 
