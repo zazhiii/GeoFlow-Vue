@@ -2,7 +2,8 @@ import axios from "axios";
 import { getToken } from "../utils/cookie"
 
 const _axios = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://47.108.51.109:8080",
+    baseURL: "http://localhost:8081",
 })
 
 // 比如在这里添加统一的 headers
