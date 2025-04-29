@@ -18,6 +18,8 @@ import {
     uploadSlice
 } from '@/api/upload';
 
+import { getToken } from '@/utils/cookie';
+
 export default {
     data() {
         return {
@@ -26,6 +28,14 @@ export default {
     },
     methods: {
         async handleHttpRequest(options) {
+            
+            // 判断用户是否登录
+            if (getToken() == null || getToken() == '') {
+                this.$message.error('请先登录');
+                this.$router.push('/login');
+                return;
+            }
+
             this.$message.info('正在上传中，请耐心等待^_^');
             this.upldateProgress(options, 0)
             // 查询文件有无对应上传任务

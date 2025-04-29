@@ -13,10 +13,10 @@ const routes = [
         path: "/home",
         component: () => import('../views/home/HomeView.vue')
       },
-      // {
-      //   path: "/geo-file",
-      //   component: () => import('../views/profile/ProfileView.vue')
-      // },
+      {
+        path: "/geo-file",
+        component: () => import('../views/geofile/GeoFileListView.vue')
+      },
       {
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')

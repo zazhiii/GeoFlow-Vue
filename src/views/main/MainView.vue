@@ -2,7 +2,7 @@
     <div id="app">
         <el-menu :default-active=this.$route.path mode="horizontal" router>
             <el-menu-item index="/home">
-                主页 {{ activeIndex }}
+                主页
             </el-menu-item>
             <el-menu-item index="/geo-file">
                 文件管理
@@ -10,6 +10,7 @@
             <el-menu-item index="/upload">
                 文件上传
             </el-menu-item>
+            
             <div style="float: right; margin-right: 20px; margin-top: 10px;">
                 <el-button v-if="!token" type="primary" @click="$router.push('/login')">
                     "登录/注册"
