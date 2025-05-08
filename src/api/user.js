@@ -1,7 +1,7 @@
 import _axios from "@/utils/_axios";
 
 // 用户注册
-export function register(username, password) {
+export function register({username, password}) {
     return _axios({
         url: '/user/register',
         method: 'post',

@@ -80,11 +80,11 @@ export default {
                             this.$message.error("登录失败")
                         }
                     } else {
-                        const { data } = await register(this.formData)
-                        if (data.code === 200) {
+                        try{
+                            await register(this.formData)
                             this.$message.success('注册成功')
                             this.isLogin = true
-                        } else {
+                        }catch{
                             this.$message.error("注册失败")
                         }
                     }
