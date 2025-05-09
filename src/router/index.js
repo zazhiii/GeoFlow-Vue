@@ -15,11 +15,11 @@ const routes = [
       },
       {
         path: "/geo-file",
-        component: () => import('../views/geofile/GeoFileListView.vue')
+        component: () => import('../views/geo-file/GeoFileListView.vue')
       },
       {
         path: "/preview/:id",
-        component: () => import('@/views/geofile/PreviewView.vue')
+        component: () => import('@/views/geo-file/PreviewView.vue')
       },
       {
         path: "/upload",

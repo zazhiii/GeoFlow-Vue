@@ -20,5 +20,12 @@ export function previewTiff(id) {
     })
 }
 
+export function deleteGeoFile(id){
+    return _axios.delete("/geo-file/delete", {
+        params: {
+            id
+        }
+    })
+}
 
 

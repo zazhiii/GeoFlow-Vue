@@ -46,7 +46,7 @@
                     width="200">
                     <template slot-scope="scope">
                         <el-button size="mini" type="primary" @click="jump(`preview/${scope.row.id}`)">预览</el-button>
-                        <el-button size="mini" type="danger">删除</el-button>
+                        <el-button size="mini" type="danger" @click.native.prevent="deleteGeoFile(scope.row.id)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -69,6 +69,7 @@
 
 <script>
 import { getGeoFileList } from '@/api/geo-file'
+import { deleteGeoFile } from '@/api/geo-file'
 
 export default {
     name: 'GeoFileListView',
@@ -89,6 +90,15 @@ export default {
         this.getList()
     },
     methods: {
+        async deleteGeoFile(id){
+            try{
+                await deleteGeoFile(id)
+                this.$message.success("删除成功")
+                this.getList()
+            }catch{
+                this.$message.error("删除文件失败")
+            }
+        },
         async getList() {
             this.loading = true
             try {
