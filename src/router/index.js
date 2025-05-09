@@ -18,6 +18,10 @@ const routes = [
         component: () => import('../views/geofile/GeoFileListView.vue')
       },
       {
+        path: "/preview/:id",
+        component: () => import('@/views/geofile/PreviewView.vue')
+      },
+      {
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
       }

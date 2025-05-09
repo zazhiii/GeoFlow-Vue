@@ -10,9 +10,7 @@
                     @keyup.enter.native="handleFilter"
                 />
                 <el-select v-model="queryParams.fileType" placeholder="文件类型" clearable style="width: 130px" class="filter-item">
-                    <el-option label="Shapefile" value="shp"/>
-                    <el-option label="GeoJSON" value="geojson"/>
-                    <el-option label="KML" value="kml"/>
+                    <el-option label="tiff" value="TIFF"/>
                 </el-select>
                 <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
                     搜索
@@ -34,7 +32,7 @@
                     width="150">
                 </el-table-column>
                 <el-table-column
-                    prop="fileSize"
+                    :formatter="(row) => (row.fileSize / 1024 / 1024).toFixed(2) + ' MB'"
                     label="文件大小"
                     width="150">
                 </el-table-column>
@@ -46,9 +44,8 @@
                 <el-table-column
                     label="操作"
                     width="200">
-                    <!-- <template slot-scope="scope"> -->
-                    <template>
-                        <el-button size="mini" type="primary">查看</el-button>
+                    <template slot-scope="scope">
+                        <el-button size="mini" type="primary" @click="jump(`preview/${scope.row.id}`)">预览</el-button>
                         <el-button size="mini" type="danger">删除</el-button>
                     </template>
                 </el-table-column>
@@ -114,6 +111,9 @@ export default {
         handleCurrentChange(val) {
             this.queryParams.pageNum = val
             this.getList()
+        },
+        jump(path){
+            this.$router.push(path)
         }
     }
 }
