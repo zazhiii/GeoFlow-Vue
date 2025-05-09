@@ -28,4 +28,8 @@ export function deleteGeoFile(id){
     })
 }
 
+export function getMetadata(id){
+    return _axios.get(`/geo-file/metadata/${id}`)
+}
+
 

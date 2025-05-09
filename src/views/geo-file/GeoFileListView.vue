@@ -24,27 +24,28 @@
                 <el-table-column
                     prop="fileName"
                     label="文件名"
-                    width="300">
+                    width="400">
                 </el-table-column>
                 <el-table-column
                     prop="fileType"
                     label="文件类型"
-                    width="150">
+                    width="100">
                 </el-table-column>
                 <el-table-column
                     :formatter="(row) => (row.fileSize / 1024 / 1024).toFixed(2) + ' MB'"
                     label="文件大小"
+                    width="100">
+                </el-table-column>
+                <el-table-column
+                    :formatter="(row) => new Date(row.createTime).toLocaleString()"
+                    label="上传时间"
                     width="150">
                 </el-table-column>
                 <el-table-column
-                    prop="createTime"
-                    label="上传时间"
-                    width="200">
-                </el-table-column>
-                <el-table-column
                     label="操作"
-                    width="200">
+                    width="300">
                     <template slot-scope="scope">
+                        <el-button size="mini" type="primary" @click="jump(`metadata/${scope.row.id}`)">元数据</el-button>
                         <el-button size="mini" type="primary" @click="jump(`preview/${scope.row.id}`)">预览</el-button>
                         <el-button size="mini" type="danger" @click.native.prevent="deleteGeoFile(scope.row.id)">删除</el-button>
                     </template>

@@ -22,6 +22,10 @@ const routes = [
         component: () => import('@/views/geo-file/PreviewView.vue')
       },
       {
+        path: "/metadata/:id",
+        component: () => import('@/views/geo-file/MetadataView.vue')
+      },
+      {
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
       }
