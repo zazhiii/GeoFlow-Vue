@@ -28,7 +28,20 @@ const routes = [
       {
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
-      }
+      },
+      {
+        path: "/historgram/:id",
+        component: () => import('@/views/geo-file/HistogramView.vue')
+      },
+      {
+        path: "/analyze",
+        component: () => import('@/views/data-analyze/index.vue')
+      },
+      {
+        path: "/open-file",
+        component: () => import('@/views/data-analyze/openFileView.vue')
+      },
+      
     ]
   },
   {

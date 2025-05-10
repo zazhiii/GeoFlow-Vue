@@ -32,4 +32,14 @@ export function getMetadata(id){
     return _axios.get(`/geo-file/metadata/${id}`)
 }
 
+export function getHistogram(id, band, binSize)
+{
+    return _axios.get('/geo-file/compute-histogram', {
+        params: {
+            id,
+            band,
+            binSize
+        }
+    })
+}
 

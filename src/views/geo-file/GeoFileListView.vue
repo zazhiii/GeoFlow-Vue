@@ -43,11 +43,12 @@
                 </el-table-column>
                 <el-table-column
                     label="操作"
-                    width="300">
+                    width="400">
                     <template slot-scope="scope">
                         <el-button size="mini" type="primary" @click="jump(`metadata/${scope.row.id}`)">元数据</el-button>
                         <el-button size="mini" type="primary" @click="jump(`preview/${scope.row.id}`)">预览</el-button>
                         <el-button size="mini" type="danger" @click.native.prevent="deleteGeoFile(scope.row.id)">删除</el-button>
+                        <el-button size="mini" type="primary" @click="jump(`histogram/${scope.row.id}`)">计算直方图</el-button>
                     </template>
                 </el-table-column>
             </el-table>
