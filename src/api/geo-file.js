@@ -32,4 +32,11 @@ export function getMetadata(id){
     return _axios.get(`/geo-file/metadata/${id}`)
 }
 
+export function isSupport(fileName){
+    return _axios.get('/geo-file/is-support', {
+        params: {
+            fileName
+        }
+    })
+}
 

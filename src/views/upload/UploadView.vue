@@ -15,8 +15,10 @@ import {
     getTaskInfo,
     getPresignedObjectUrl,
     merge,
-    uploadSlice
+    uploadSlice,
 } from '@/api/upload';
+
+import { isSupport } from '@/api/geo-file';
 
 import { getToken } from '@/utils/cookie';
 
@@ -35,11 +37,18 @@ export default {
                 this.$router.push('/login');
                 return;
             }
+            
+            const file = options.file
+            const support = await isSupport(file.name)
+            if(support != true){
+                this.$message.error('暂不支持上传该文件类型')
+                return
+            }
+            console.log(22);
 
             this.$message.info('正在上传中，请耐心等待^_^');
             this.upldateProgress(options, 0)
             // 查询文件有无对应上传任务
-            const file = options.file
             const identifier = await md5(file);
             const { data } = await getTaskInfo(identifier);
             let task = data.data;
@@ -50,7 +59,7 @@ export default {
                 if (data.data) {
                     task = data.data;
                 } else {
-                    this.$message.error('创建上传任务失败');
+                    this.$message.error('创建上传任务出错');
                 }
             }
             // 处理上传
