@@ -43,3 +43,11 @@ export function getHistogram(id, band, binSize)
     })
 }
 
+export function isSupport(fileName){
+    return _axios.get('/geo-file/is-support', {
+        params: {
+            fileName
+        }
+    })
+}
+

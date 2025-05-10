@@ -19,7 +19,7 @@ _axios.interceptors.response.use(
     function (response) {
         const { data } = response;
         if(data.code == 0){
-            this.$message.error(data.message)
+            return Promise.reject(data)
         }
         return response;
     },
