@@ -34,8 +34,14 @@ const routes = [
         component: () => import('@/views/geo-file/HistogramView.vue')
       },
       {
-        path: "/analyze",
-        component: () => import('@/views/data-analyze/index.vue')
+        path: "data-analyze",  
+        component: () => import('@/views/data-analyze/index.vue'),
+        children: [
+          {
+            path: "color-composite",
+            component: () => import('@/views/data-analyze/ColorCompositeView.vue')
+          }
+        ]
       },
       {
         path: "/open-file",

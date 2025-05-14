@@ -14,7 +14,7 @@
                 文件上传
             </el-menu-item>
             
-            <el-menu-item index="/analyze">
+            <el-menu-item index="/data-analyze">
                 数据分析
             </el-menu-item>
 

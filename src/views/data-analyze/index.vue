@@ -1,29 +1,44 @@
 <template>
-    <div class="analyze-menu" style="display: flex;">
+    <div class="analyze-container" style="display: flex;">
         <el-menu :default-active="this.$route.path" mode="vertical" router class="side-menu">
             
-            <el-menu-item index="/open-file" class="menu-item">
-                打开文件
+            <el-menu-item index="/data-analyze/color-composite" class="menu-item">
+                <i class="el-icon-picture"></i>
+                彩色合成
             </el-menu-item>
             
-            <el-menu-item index="/save-file" class="menu-item">
+            <el-menu-item index="/data-analyze/save-file" class="menu-item">
+                <i class="el-icon-document-copy"></i>
                 保存文件
             </el-menu-item>
             
-            <el-menu-item index="/geo-file" class="menu-item">
+            <el-menu-item index="/data-analyze/file-manage" class="menu-item">
+                <i class="el-icon-files"></i>
                 文件管理
             </el-menu-item>
             
-            <el-menu-item index="/upload" class="menu-item">
+            <el-menu-item index="/data-analyze/upload" class="menu-item">
+                <i class="el-icon-upload"></i>
                 文件上传
             </el-menu-item>
             
-            <el-menu-item index="/historgram/:id" class="menu-item">
-                计算直方图
+            <el-menu-item index="/data-analyze/histogram" class="menu-item">
+                <i class="el-icon-data-analysis"></i>
+                直方图分析
+            </el-menu-item>
+            
+            <el-menu-item index="/data-analyze/image-filter" class="menu-item">
+                <i class="el-icon-picture"></i>
+                图像滤波
+            </el-menu-item>
+            
+            <el-menu-item index="/data-analyze/image-segment" class="menu-item">
+                <i class="el-icon-crop"></i>
+                图像分割
             </el-menu-item>
 
         </el-menu>
-        <div class="image-slot">
+        <div class="content-area">
             <router-view></router-view>
         </div>
     </div>
@@ -31,59 +46,75 @@
 
 <script>
 export default {
-    name: 'Analyze-Menu',
+    name: 'DataAnalyze',
     data() {
         return {
-            // 如果需要添加一些数据，可以在这里定义
+            activeIndex: '/data-analyze/open-file'
         };
     },
     methods: {
-        // 如果需要添加一些方法，可以在这里定义
+        handleSelect(key) {
+            this.activeIndex = key;
+        }
     },
-    
+    mounted() {
+        // 初始化时设置默认选中项
+        if (this.$route.path) {
+            this.activeIndex = this.$route.path;
+        }
+    }
 };
 </script>
 
 <style scoped>
+.analyze-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    padding: 15px;
+    background-color: #f5f7fa;
+}
+
 /* 侧边菜单样式 */
 .side-menu {
-    width: 200px; /* 设置侧边菜单的宽度 */
-    background-color: #f5f5f7f9; /* 苹果风格的浅灰色背景 */
+    width: 220px; /* 设置侧边菜单的宽度 */
+    background-color: #ffffff; /* 白色背景 */
     border-radius: 10px; /* 添加圆角 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 添加阴影 */
     height: 100%; /* 侧边菜单高度占满父容器 */
+    margin-right: 20px;
 }
 
 /* 菜单项样式 */
 .menu-item {
-    height: 50px; /* 设置菜单项的高度 */
-    line-height: 50px; /* 设置菜单项的行高，使文字垂直居中 */
-    text-align: center; /* 设置菜单项的文字居中 */
-    background-color: #ffffff; /* 苹果风格的白色背景 */
-    color:  #409EFF; /* 苹果风格的黑色文字 */
-    font-size: 16px; /* 设置菜单项的文字大小 */
-    border-bottom: 1px solid #e1e5ea; /* 淡灰色的分隔线 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    height: 56px; /* 设置菜单项的高度 */
+    line-height: 56px; /* 设置菜单项的行高，使文字垂直居中 */
+    padding-left: 20px; /* 左侧内边距 */
+    color: #606266; /* 默认文字颜色 */
+    font-size: 15px; /* 设置菜单项的文字大小 */
+    border-left: 3px solid transparent; /* 透明左边框，选中时会变色 */
+    transition: all 0.3s; /* 添加过渡效果 */
 }
 
 /* 鼠标悬停时的样式 */
 .menu-item:hover {
-    background-color: #e1e5ea; /* 鼠标悬停时的淡灰色背景 */
-    color: #000000; /* 鼠标悬停时的文字颜色 */
+    background-color: #ecf5ff; /* 鼠标悬停时的背景 */
+    color: #409EFF; /* 鼠标悬停时的文字颜色 */
 }
 
+/* 选中状态的样式 */
+.el-menu-item.is-active {
+    background-color: #ecf5ff;
+    color: #409EFF;
+    border-left: 3px solid #409EFF;
+}
 
-.image-slot {
-flex: 1; /* 占据剩余空间 */
-    margin-left: 20px; /* 与侧边菜单的间距 */
-    background-color: #f5f5f7; /* 背景颜色 */
+.content-area {
+    flex: 1; /* 占据剩余空间 */
+    background-color: #ffffff; /* 背景颜色 */
     border-radius: 10px; /* 圆角 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影 */
-    padding: 10px; /* 内边距 */
-    height: 800px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 阴影 */
+    padding: 20px; /* 内边距 */
+    height: 100%; 
     overflow: auto; /* 添加滚动条，防止内容溢出 */
 }
 </style>

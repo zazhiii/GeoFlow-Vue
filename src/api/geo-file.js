@@ -1,9 +1,19 @@
 import _axios from "@/utils/_axios";
 
-
-export function getGeoFileList(params) {
+export function list(params) {
     return _axios({
         url: '/geo-file/list',
+        method: 'get',
+        params: {
+            fileName: params.fileName,
+            fileType: params.fileType
+        }
+    })
+}
+
+export function page(params) {
+    return _axios({
+        url: '/geo-file/page',
         method: 'get',
         params: {
             pageNum: params.pageNum || 1,

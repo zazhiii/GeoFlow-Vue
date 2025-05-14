@@ -77,7 +77,7 @@ export default {
                             this.$message.success('登录成功')
                             this.$router.push('/home')
                         } catch (error) {
-                            this.$message.error("登录失败")
+                            this.$message.error("登录失败, 请检查用户名和密码")
                         }
                     } else {
                         try{

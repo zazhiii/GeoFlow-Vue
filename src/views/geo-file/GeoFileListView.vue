@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { getGeoFileList } from '@/api/geo-file'
+import { page } from '@/api/geo-file'
 import { deleteGeoFile } from '@/api/geo-file'
 
 export default {
@@ -104,7 +104,7 @@ export default {
         async getList() {
             this.loading = true
             try {
-                const { data } = await getGeoFileList(this.queryParams)
+                const { data } = await page(this.queryParams)
                 this.fileList = data.data.records
                 this.total = data.data.total
             } catch (error) {
