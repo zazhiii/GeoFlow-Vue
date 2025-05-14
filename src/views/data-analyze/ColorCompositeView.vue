@@ -6,21 +6,21 @@
             <el-form label-width="120px">
                 <el-form-item label="红色波段 (R)">
                     <el-select v-model="redBand" placeholder="请选择红色波段文件">
-                        <el-option v-for="item in tiffFiles" :key="item.id" :label="item.name" :value="item.id">
+                        <el-option v-for="item in tiffFiles" :key="item.id" :label="item.fileName" :value="item.id">
                         </el-option>
                     </el-select>
                 </el-form-item>
 
                 <el-form-item label="绿色波段 (G)">
                     <el-select v-model="greenBand" placeholder="请选择绿色波段文件">
-                        <el-option v-for="item in tiffFiles" :key="item.id" :label="item.name" :value="item.id">
+                        <el-option v-for="item in tiffFiles" :key="item.id" :label="item.fileName" :value="item.id">
                         </el-option>
                     </el-select>
                 </el-form-item>
 
                 <el-form-item label="蓝色波段 (B)">
                     <el-select v-model="blueBand" placeholder="请选择蓝色波段文件">
-                        <el-option v-for="item in tiffFiles" :key="item.id" :label="item.name" :value="item.id">
+                        <el-option v-for="item in tiffFiles" :key="item.id" :label="item.fileName" :value="item.id">
                         </el-option>
                     </el-select>
                 </el-form-item>

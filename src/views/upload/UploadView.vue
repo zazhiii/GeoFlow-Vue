@@ -29,6 +29,13 @@ export default {
         }
     },
     methods: {
+        async checkFileType(file){
+            const { data } = await isSupport(file.name)
+            if(data.data != true){
+                this.$message.error('暂不支持上传该文件类型')
+                return
+            }
+        },
         async handleHttpRequest(options) {
             
             // 判断用户是否登录
@@ -37,14 +44,9 @@ export default {
                 this.$router.push('/login');
                 return;
             }
-            
             const file = options.file
-            const support = await isSupport(file.name)
-            if(support != true){
-                this.$message.error('暂不支持上传该文件类型')
-                return
-            }
-            console.log(22);
+            
+            this.checkFileType(file)
 
             this.$message.info('正在上传中，请耐心等待^_^');
             this.upldateProgress(options, 0)

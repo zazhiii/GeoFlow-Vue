@@ -7,34 +7,19 @@
                 彩色合成
             </el-menu-item>
             
-            <el-menu-item index="/data-analyze/save-file" class="menu-item">
-                <i class="el-icon-document-copy"></i>
-                保存文件
-            </el-menu-item>
-            
-            <el-menu-item index="/data-analyze/file-manage" class="menu-item">
-                <i class="el-icon-files"></i>
-                文件管理
-            </el-menu-item>
-            
-            <el-menu-item index="/data-analyze/upload" class="menu-item">
-                <i class="el-icon-upload"></i>
-                文件上传
-            </el-menu-item>
-            
             <el-menu-item index="/data-analyze/histogram" class="menu-item">
                 <i class="el-icon-data-analysis"></i>
                 直方图分析
             </el-menu-item>
             
-            <el-menu-item index="/data-analyze/image-filter" class="menu-item">
+            <!-- <el-menu-item index="/data-analyze/image-filter" class="menu-item">
                 <i class="el-icon-picture"></i>
                 图像滤波
-            </el-menu-item>
+            </el-menu-item> -->
             
-            <el-menu-item index="/data-analyze/image-segment" class="menu-item">
+            <el-menu-item index="/data-analyze/image-crop" class="menu-item">
                 <i class="el-icon-crop"></i>
-                图像分割
+                图像裁剪
             </el-menu-item>
 
         </el-menu>

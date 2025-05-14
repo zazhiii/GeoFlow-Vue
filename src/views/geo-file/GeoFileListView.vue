@@ -39,16 +39,20 @@
                 <el-table-column
                     :formatter="(row) => new Date(row.createTime).toLocaleString()"
                     label="上传时间"
-                    width="150">
+                    width="180">
                 </el-table-column>
                 <el-table-column
                     label="操作"
-                    width="400">
+                    width="350">
                     <template slot-scope="scope">
-                        <el-button size="mini" type="primary" @click="jump(`metadata/${scope.row.id}`)">元数据</el-button>
-                        <el-button size="mini" type="primary" @click="jump(`preview/${scope.row.id}`)">预览</el-button>
-                        <el-button size="mini" type="danger" @click.native.prevent="deleteGeoFile(scope.row.id)">删除</el-button>
-                        <el-button size="mini" type="primary" @click="jump(`histogram/${scope.row.id}`)">计算直方图</el-button>
+                        <template v-if="scope.row.status === 1">
+                            <el-button size="mini" type="primary" @click="jump(`metadata/${scope.row.id}`)">元数据</el-button>
+                            <el-button size="mini" type="primary" @click="jump(`preview/${scope.row.id}`)">预览</el-button>
+                            <el-button size="mini" type="danger" @click.native.prevent="deleteGeoFile(scope.row.id)">删除</el-button>
+                        </template>
+                        <template v-else>
+                            <span>{{ getFileStatus(scope.row.status) }}</span>
+                        </template>
                     </template>
                 </el-table-column>
             </el-table>
@@ -92,6 +96,18 @@ export default {
         this.getList()
     },
     methods: {
+        getFileStatus(code){
+            switch(code){
+                case 0:
+                    return '上传中'
+                case 1:
+                    return '上传完成'
+                case 2:
+                    return '上传失败'
+                default:
+                    return '未知状态'
+            }
+        },
         async deleteGeoFile(id){
             try{
                 await deleteGeoFile(id)

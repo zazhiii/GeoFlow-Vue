@@ -29,10 +29,10 @@ const routes = [
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
       },
-      {
-        path: "/historgram/:id",
-        component: () => import('@/views/geo-file/HistogramView.vue')
-      },
+      // {
+      //   path: "/histogram/:id",
+      //   component: () => import('@/views/data-analyze/HistogramView.vue')
+      // },
       {
         path: "data-analyze",  
         component: () => import('@/views/data-analyze/index.vue'),
@@ -40,6 +40,10 @@ const routes = [
           {
             path: "color-composite",
             component: () => import('@/views/data-analyze/ColorCompositeView.vue')
+          },
+          {
+            path: "histogram",
+            component: () => import('@/views/data-analyze/HistogramView.vue')
           }
         ]
       },

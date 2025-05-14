@@ -10,13 +10,14 @@
   },
   "dependencies": {
     "axios": "^1.8.4",
-    "spark-md5": "^3.0.2",
     "core-js": "^3.8.3",
+    "echarts": "^5.6.0",
     "element-ui": "^2.15.14",
+    "js-cookie": "^3.0.5",
+    "spark-md5": "^3.0.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2",
-    "js-cookie": "^3.0.5"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
