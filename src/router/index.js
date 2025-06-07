@@ -44,6 +44,10 @@ const routes = [
           {
             path: "histogram",
             component: () => import('@/views/data-analyze/HistogramView.vue')
+          },
+          {
+            path: "veg-index",  
+            component: () => import('@/views/data-analyze/NDVI.vue')
           }
         ]
       },
