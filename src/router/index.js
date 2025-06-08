@@ -29,12 +29,8 @@ const routes = [
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
       },
-      // {
-      //   path: "/histogram/:id",
-      //   component: () => import('@/views/data-analyze/HistogramView.vue')
-      // },
       {
-        path: "data-analyze",  
+        path: "/data-analyze",
         component: () => import('@/views/data-analyze/index.vue'),
         children: [
           {
@@ -45,17 +41,26 @@ const routes = [
             path: "histogram",
             component: () => import('@/views/data-analyze/HistogramView.vue')
           },
+          // {
+          //   path: "image-crop",
+          //   component: () => import('@/views/data-analyze/ImageCropView.vue')
+          // },
           {
-            path: "veg-index",  
-            component: () => import('@/views/data-analyze/NDVI.vue')
+            path: "veg-statistics", 
+            name: "VegStatistics",
+            component: () => import('@/views/data-analyze/VegStatistics.vue')
+          },
+          {
+            path: "ndvi", // ✅ 添加 NDVI 页面路由，确保菜单跳转不空白
+            name: "NDVIView",
+            component: () => import('@/views/data-analyze/VegStatistics.vue')
           }
         ]
       },
       {
         path: "/open-file",
         component: () => import('@/views/data-analyze/openFileView.vue')
-      },
-      
+      }
     ]
   },
   {

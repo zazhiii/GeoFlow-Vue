@@ -1,6 +1,6 @@
 <template>
   <div class="analyze-container" style="display: flex;">
-    <el-menu :default-active="this.$route.path" mode="vertical" router class="side-menu">
+    <el-menu :default-active="activeIndex" mode="vertical" router class="side-menu" @select="handleSelect">
       <el-menu-item index="/data-analyze/color-composite" class="menu-item">
         <i class="el-icon-picture"></i>
         彩色合成
@@ -16,8 +16,9 @@
         图像裁剪
       </el-menu-item>
 
-      <el-menu-item index="/data-analyze/veg-index" class="menu-item">
-        <GoNDVIButton />
+      <el-menu-item index="/data-analyze/ndvi" class="menu-item">
+        <i class="el-icon-s-data"></i>
+        NDVI 植被指数分析
       </el-menu-item>
     </el-menu>
 
@@ -28,21 +29,17 @@
 </template>
 
 <script>
-import GoNDVIButton from '@/components/GoNDVIButton.vue'
-
 export default {
   name: 'DataAnalyze',
-  components: {
-    GoNDVIButton
-  },
   data() {
     return {
-      activeIndex: '/data-analyze/open-file'
+      activeIndex: '/data-analyze/color-composite'
     };
   },
   methods: {
     handleSelect(key) {
       this.activeIndex = key;
+      // this.$router.push(key);
     }
   },
   mounted() {
