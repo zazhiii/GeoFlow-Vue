@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <h2>NDVI 植被指数计算</h2>
     <form @submit.prevent="calculateNDVI">
@@ -13,8 +13,8 @@
       <button type="submit">计算 NDVI</button>
     </form>
 
-    <!-- 显示 NDVI 结果 -->
-    <div v-if="ndviResult !== null" style="margin-top:16px;">
+    显示 NDVI 结果 -->
+    <!-- <div v-if="ndviResult !== null" style="margin-top:16px;">
       <h3>计算结果：</h3>
       <pre>{{ ndviResult }}</pre>
     </div>
@@ -69,4 +69,4 @@ input {
 button {
   margin-top: 8px;
 }
-</style>
+</style> -->

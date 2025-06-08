@@ -1,70 +1,84 @@
 <template>
-  <div>
-    <h2>NDVI 植被指数计算</h2>
-    <form @submit.prevent="calculateNDVI">
-      <div>
-        <label for="redBand">Red 波段 ID：</label>
-        <input type="number" id="redBand" v-model="redBandId" required />
-      </div>
-      <div>
-        <label for="nirBand">NIR 波段 ID：</label>
-        <input type="number" id="nirBand" v-model="nirBandId" required />
-      </div>
-      <button type="submit">计算 NDVI</button>
-    </form>
+  <div class="veg-statistics">
+    <h2>NDVI 计算</h2>
+    <input v-model="redBandId" placeholder="输入 redBandId" />
+    <input v-model="nirBandId" placeholder="输入 nirBandId" />
+    <button @click="fetchNDVI">计算 NDVI</button>
 
-    <div v-if="ndviResult !== null" style="margin-top: 16px;">
-      <h3>计算结果：</h3>
-      <pre>{{ ndviResult }}</pre>
+    <div v-if="ndviImage">
+      <h3>NDVI 结果图：</h3>
+      <img :src="ndviImage" alt="NDVI 结果图像" />
+    </div>
+
+    <div v-else-if="resultText">
+      <h3>NDVI 结果数据：</h3>
+      <pre>{{ resultText }}</pre>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   name: 'VegStatistics',
   data() {
     return {
-      redBandId: null,
-      nirBandId: null,
-      ndviResult: null
+      redBandId: '',
+      nirBandId: '',
+      ndviImage: null,
+      resultText: ''
     }
   },
   methods: {
-    async calculateNDVI() {
-      try {
-        const response = await axios.get('/api/operation/ndvi', {
-          params: {
-            redBandId: this.redBandId,
-            nirBandId: this.nirBandId
-          },
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'AfterScript': 'YOUR_AFTER_SCRIPT_VALUE' // 替换成实际值
-          }
-        })
-        this.ndviResult = response.data
-      } catch (error) {
-        this.ndviResult = error.response ? error.response.data : error.message
-        console.error('NDVI 计算失败:', error)
-      }
+    fetchNDVI() {
+      axios.get('http://47.109.197.221:8080/api/operation/ndvi', {
+        params: {
+          redBandId: this.redBandId,
+          nirBandId: this.nirBandId
+        },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => {
+        const contentType = response.headers['content-type'];
+
+        if (contentType.includes('application/json') || contentType.includes('text/plain')) {
+          this.resultText = typeof response.data === 'string'
+            ? response.data
+            : JSON.stringify(response.data, null, 2);
+          this.ndviImage = null;
+        } else if (contentType.includes('image')) {
+          const blob = new Blob([response.data], { type: contentType });
+          this.ndviImage = URL.createObjectURL(blob);
+          this.resultText = '';
+        } else {
+          this.resultText = '未知响应类型';
+        }
+      })
+      .catch(error => {
+        console.error('请求失败：', error);
+        this.resultText = '请求失败，请检查控制台或服务器状态';
+        this.ndviImage = null;
+      });
     }
   }
 }
 </script>
 
 <style scoped>
-label {
-  display: inline-block;
-  width: 100px;
+.veg-statistics {
+  margin: 20px;
 }
-input {
-  width: 200px;
-  margin-bottom: 8px;
+.veg-statistics input {
+  margin-right: 10px;
 }
-button {
-  margin-top: 8px;
+.veg-statistics img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  margin-top: 10px;
 }
 </style>
+

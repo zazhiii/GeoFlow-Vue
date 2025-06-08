@@ -5,71 +5,73 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     component: () => import('../views/main/MainView.vue'),
-    redirect: "/home",
+    redirect: '/home',
     children: [
       {
-        path: "/home",
+        path: 'home',
         component: () => import('../views/home/HomeView.vue')
       },
       {
-        path: "/geo-file",
+        path: 'geo-file',
         component: () => import('../views/geo-file/GeoFileListView.vue')
       },
       {
-        path: "/preview/:id",
+        path: 'preview/:id',
         component: () => import('@/views/geo-file/PreviewView.vue')
       },
       {
-        path: "/metadata/:id",
+        path: 'metadata/:id',
         component: () => import('@/views/geo-file/MetadataView.vue')
       },
       {
-        path: "/upload",
+        path: 'upload',
         component: () => import('../views/upload/UploadView.vue')
       },
       {
-        path: "/data-analyze",
+        path: 'data-analyze',
         component: () => import('@/views/data-analyze/index.vue'),
+        redirect: '/data-analyze/veg-statistics', 
         children: [
           {
-            path: "color-composite",
+            path: 'color-composite',
             component: () => import('@/views/data-analyze/ColorCompositeView.vue')
           },
           {
-            path: "histogram",
+            path: 'histogram',
             component: () => import('@/views/data-analyze/HistogramView.vue')
           },
-          // {
-          //   path: "image-crop",
-          //   component: () => import('@/views/data-analyze/ImageCropView.vue')
-          // },
           {
-            path: "veg-statistics", 
-            name: "VegStatistics",
+            path: 'veg-statistics',
+            name: 'VegStatistics',
             component: () => import('@/views/data-analyze/VegStatistics.vue')
           },
           {
-            path: "ndvi", // ✅ 添加 NDVI 页面路由，确保菜单跳转不空白
-            name: "NDVIView",
+            path: 'ndvi', 
+            name: 'NDVIView',
             component: () => import('@/views/data-analyze/VegStatistics.vue')
           }
         ]
       },
       {
-        path: "/open-file",
+        path: 'open-file',
         component: () => import('@/views/data-analyze/openFileView.vue')
       }
     ]
   },
   {
-    path: "/login",
+    path: '/login',
     component: () => import('../views/login/LoginView.vue')
+  },
+  {
+    path: '*', 
+    redirect: '/home'
   }
 ]
 
 const router = new VueRouter({
+  mode: 'hash', 
   routes
 })
 
