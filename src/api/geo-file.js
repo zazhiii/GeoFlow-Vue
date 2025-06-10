@@ -2,7 +2,7 @@ import _axios from "@/utils/_axios";
 
 export function list(params) {
     return _axios({
-        url: '/geo-file/list',
+        url: 'http://47.109.197.221:8080/api/geo-file/list',
         method: 'get',
         params: {
             fileName: params.fileName,
@@ -13,7 +13,7 @@ export function list(params) {
 
 export function page(params) {
     return _axios({
-        url: '/geo-file/page',
+        url: 'http://47.109.197.221:8080/api/geo-file/page',
         method: 'get',
         params: {
             pageNum: params.pageNum || 1,
@@ -25,7 +25,7 @@ export function page(params) {
 }
 
 export function previewTiff(id) {
-    return _axios.get(`/geo-file/preview/tiff/${id}`, {
+    return _axios.get(`http://47.109.197.221:8080/api/geo-file/preview/tiff/${id}`, {
         responseType: 'blob' // 非常重要，告诉 axios 返回二进制流
     })
 }
@@ -39,12 +39,12 @@ export function deleteGeoFile(id){
 }
 
 export function getMetadata(id){
-    return _axios.get(`/geo-file/metadata/${id}`)
+    return _axios.get(`http://47.109.197.221:8080/api/geo-file/metadata/${id}`)
 }
 
 export function getHistogram(id, band, binSize)
 {
-    return _axios.get('/geo-file/compute-histogram', {
+    return _axios.get('http://47.109.197.221:8080/api/geo-file/compute-histogram', {
         params: {
             id,
             band,
@@ -54,7 +54,7 @@ export function getHistogram(id, band, binSize)
 }
 
 export function isSupport(fileName){
-    return _axios.get('/geo-file/is-support', {
+    return _axios.get('http://47.109.197.221:8080/api/geo-file/is-support', {
         params: {
             fileName
         }

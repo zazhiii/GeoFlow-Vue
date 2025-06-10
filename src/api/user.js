@@ -3,7 +3,7 @@ import _axios from "@/utils/_axios";
 // 用户注册
 export function register({username, password}) {
     return _axios({
-        url: '/user/register',
+        url: 'http://47.109.197.221:8080/api/user/register',
         method: 'post',
         params: {
             username,
@@ -15,7 +15,7 @@ export function register({username, password}) {
 // 用户登录
 export function login(username, password) {
     return _axios({
-        url: '/user/login',
+        url: 'http://47.109.197.221:8080/api/user/login',
         method: 'post',
         params: {
             username,
@@ -26,7 +26,7 @@ export function login(username, password) {
 
 export function getUserInfo() {
     return _axios({
-        url: '/user/info',
+        url: 'http://47.109.197.221:8080/api/user/info',
         method: 'get'
     })
 }
