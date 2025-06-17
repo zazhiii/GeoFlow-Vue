@@ -31,3 +31,17 @@ export function getUserInfo() {
     })
 }
 
+
+export function update({ username, email, avatar, password, newPassword }) {
+    return _axios({
+        url: '/user/update',
+        method: 'post',
+        data: {  // 使用 data 而不是 params
+            username,
+            email,
+            avatar,
+            password,
+            newPassword
+        }
+    })
+}

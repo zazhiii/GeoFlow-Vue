@@ -22,7 +22,9 @@
                 <el-button v-if="!token" type="primary" @click="$router.push('/login')">
                     "登录/注册"
                 </el-button>
-                <el-link v-else type="primary">{{ userInfo.username }}</el-link>
+                <el-link v-else type="primary" @click="$router.push('/user')">
+                    {{ userInfo.username }}
+                </el-link>
             </div>
         </el-menu>
         <router-view></router-view>
@@ -38,7 +40,7 @@ export default {
     name: 'MainView',
     mounted() {
         if(this.token){
-            if(!this.userInfo.username) this.updateUserInfo();  // vuex 中没有用户信息，则更新用户信息
+           this.updateUserInfo();  // vuex 中没有用户信息，则更新用户信息
         }  
     },
     computed: {

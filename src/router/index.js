@@ -29,12 +29,16 @@ const routes = [
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
       },
+      {
+        path: "/user",
+        component: () => import('@/views/user/Userview.vue')
+      },
       // {
       //   path: "/histogram/:id",
       //   component: () => import('@/views/data-analyze/HistogramView.vue')
       // },
       {
-        path: "data-analyze",  
+        path: "data-analyze",
         component: () => import('@/views/data-analyze/index.vue'),
         children: [
           {
@@ -44,6 +48,11 @@ const routes = [
           {
             path: "histogram",
             component: () => import('@/views/data-analyze/HistogramView.vue')
+          },
+          {
+            path: '/data-analyze/ndvi',
+            name: 'NDVI',
+            component: () => import('@/views/data-analyze/NDVIView.vue')
           }
         ]
       },
@@ -51,7 +60,7 @@ const routes = [
         path: "/open-file",
         component: () => import('@/views/data-analyze/openFileView.vue')
       },
-      
+
     ]
   },
   {

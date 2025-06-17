@@ -36,10 +36,26 @@ const uploadSlice = (slice, url) => {
     })
 }
 
+ const uploadAvatar = (file) => {
+  const formData = new FormData()
+  formData.append('file', file)  // 'file' 要与后端接口参数名一致
+  
+  return _axios({
+    url: '/user/uploadAvatar',  // 确保与后端接口一致
+    method: 'post',
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data'  // 必须设置这个header
+    }
+  })
+}
+
 export{
     initTask,
     getPresignedObjectUrl,
     getTaskInfo,
     merge,
-    uploadSlice
+    uploadSlice,
+    uploadAvatar
 }
+
