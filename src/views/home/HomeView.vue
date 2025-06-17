@@ -21,7 +21,7 @@
                         <i class="el-icon-data-analysis"></i>
                         <h3>数据分析</h3>
                         <p>强大的地理空间数据分析能力</p>
-                        <el-button type="primary">开始分析</el-button>
+                        <el-button type="primary" @click="$router.push('/data-analyze')">开始分析</el-button>
                     </el-card>
                 </el-col>
 
@@ -30,7 +30,7 @@
                         <i class="el-icon-view"></i>
                         <h3>数据可视化</h3>
                         <p>丰富的地理数据可视化展示</p>
-                        <el-button type="primary">查看展示</el-button>
+                        <el-button type="primary" @click="$router.push('/geo-file')">查看展示</el-button>
                     </el-card>
                 </el-col>
             </el-row>
