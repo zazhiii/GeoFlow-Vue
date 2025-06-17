@@ -79,10 +79,20 @@ export default {
       }
     },
     transformData(dataObj) {
-      const bins = Object.keys(dataObj).map(key => `${key}-${parseInt(key, 10) + 100}`);
-      const values = Object.values(dataObj);
-      console.log('Bins:', bins); // 打印 bins 数组
-      console.log('Values:', values); // 打印 values 数组
+      // 获取所有键并转换为数字
+      const keys = Object.keys(dataObj).map(Number).sort((a, b) => a - b);
+      
+      // 删除第一个键（最小的键）
+      if (keys.length > 0) {
+        keys.shift();
+      }
+      
+      // 构建新的 bins 和 values 数组
+      const bins = keys.map(key => `${key}-${key + 100}`);
+      const values = keys.map(key => dataObj[key]);
+      
+      console.log('处理后 Bins:', bins); // 打印处理后的 bins 数组
+      console.log('处理后 Values:', values); // 打印处理后的 values 数组
       return { bins, values };
     },
     async getHistogram() {
@@ -214,10 +224,14 @@ export default {
           type: 'category',
           data: displayBins,
           axisLabel: {
-            interval: 0,
+            interval: Math.max(1, Math.floor(displayBins.length / 20)), // 动态计算间隔
             rotate: 45,
             fontSize: 10,
-            formatter: (value) => {
+            formatter: (value, index) => {
+              // 只显示部分标签
+              if (index % Math.max(1, Math.floor(displayBins.length / 10)) !== 0) {
+                return '';
+              }
               // 简化显示长区间标签
               if (value.length > 12) {
                 return value.replace(/-.*?(\d{3})/, '...$1');
@@ -226,7 +240,8 @@ export default {
             }
           },
           axisTick: {
-            alignWithLabel: true
+            alignWithLabel: true,
+            interval: Math.max(1, Math.floor(displayBins.length / 20)) // 与标签同步
           },
           name: '像素值区间',
           nameLocation: 'middle',

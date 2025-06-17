@@ -29,6 +29,10 @@ const routes = [
         path: "/upload",
         component: () => import('../views/upload/UploadView.vue')
       },
+      {
+        path: "/user",
+        component: () => import('@/views/user/Userview.vue')
+      },
       // {
       //   path: "/histogram/:id",
       //   component: () => import('@/views/data-analyze/HistogramView.vue')
