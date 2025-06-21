@@ -20,7 +20,6 @@ export function computeNDVI(redBandId,nirBandId) {
         }
     })
 }
-=======
 
 export const cropTiff = (id, x1, y1, x2, y2) => {
     return _axios.post('/operation/crop-tiff', null, {
