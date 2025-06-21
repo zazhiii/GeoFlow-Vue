@@ -9,8 +9,10 @@
     "test": "vue-cli-service serve --mode test"
   },
   "dependencies": {
+    "@cropper/elements": "^2.0.0",
     "axios": "^1.8.4",
     "core-js": "^3.8.3",
+    "cropperjs": "^1.5.12",
     "echarts": "^5.6.0",
     "element-ui": "^2.15.14",
     "geotiff": "^2.1.3",

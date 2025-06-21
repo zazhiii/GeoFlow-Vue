@@ -53,6 +53,10 @@ const routes = [
             path: '/data-analyze/ndvi',
             name: 'NDVI',
             component: () => import('@/views/data-analyze/NDVIView.vue')
+=======
+            path:"image-crop",
+            component: () => import('@/views/data-analyze/crop.vue')
+>>>>>>> debecef (crop)
           }
         ]
       },
